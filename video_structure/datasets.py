@@ -21,7 +21,7 @@ import os
 import numpy as np
 import tensorflow as tf
 
-# Data fields used by the model:
+# Data fields used by the model:  #模型使用的数据字段
 REQUIRED_DATA_FIELDS = ['image', 'true_object_pos']
 
 
@@ -32,23 +32,24 @@ def get_sequence_dataset(data_dir,
                          random_offset=True,
                          repeat_dataset=True,
                          seed=0):
-  """Returns a tf.data.Dataset object for a Numpy image sequence dataset.
+  """Returns a tf.data.Dataset object for a Numpy image sequence dataset.  # 返回NumPy图像序列数据集的tf.data.Dataset对象
+
 
   Args:
     data_dir: Directory containing Numpy files where each file contains an image
-      sequence and ground-truth object coordinates.
-    batch_size: Desired number of sequences per batch in the output dataset.
-    num_timesteps: Desired sequence length in the output dataset.
-    file_glob: Glob pattern to sub-select files in data_dir.
+      sequence and ground-truth object coordinates.  # 包含numpy files的目录，每个files包含图像序列和真实数据对象坐标
+    batch_size: Desired number of sequences per batch in the output dataset.# 输出数据集中每批次所需的序列数
+    num_timesteps: Desired sequence length in the output dataset.# 输出数据集所需的序列长度
+    file_glob: Glob pattern to sub-select files in data_dir.# 
     random_offset: If True, a random number of frames will be dropped from the
       start of the input sequence before dividing it into chunks of length
-      num_timesteps.
-    repeat_dataset: If True, output dataset will repeat forever.
+      num_timesteps.   #如果为真，则在将输入序列分割为长度为num_time步骤的块之前，会从输入序列的开始处删除任意数目的帧。
+    repeat_dataset: If True, output dataset will repeat forever.# 若为真，输出数据集会不断重复
     seed: Random seed for shuffling.
 
   Returns:
     A tf.data.Dataset, or a one-shot iterator of the dataset if return_iterator
-    is True.
+    is True. #一个tf.data.Dataset，或者如果return_iterator为True则该数据集的单次迭代器
 
   Raises:
     RuntimeError: If no data files are found in data_dir.
